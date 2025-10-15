@@ -1,0 +1,248 @@
+[
+  {
+    "name": "Mega Mostaza Clásica",
+    "price": 7900,
+    "description": "Mega hamburguesa de carne, queso cheddar, cebollita, mostaza y kétchup",
+    "image": "https://www.mostazaweb.com.ar/wp-content/uploads/2025/05/HAMBURGUESAS_0-1.png"
+  },
+  {
+    "name": "Doble Cheddar Junior",
+    "price": 6400,
+    "description": "Hamburguesa con doble carne junior, doble queso cheddar, cebollita, mostaza y kétchup",
+    "image": "https://www.mostazaweb.com.ar/wp-content/uploads/2025/05/HAMBURGUESAS_0-2-1.png"
+  },
+  {
+    "name": "Mega Big Bang Cheddar",
+    "price": 10200,
+    "description": "Mega hamburguesa de carne con pan de papa, queso cheddar, bacon, salsa cheddar, kétchup y cebollita",
+    "image": "https://www.mostazaweb.com.ar/wp-content/uploads/2025/08/00-7-copia.png"
+  },
+  {
+    "name": "Mega Big Bang Cheddar Doble",
+    "price": 12600,
+    "description": "Mega hamburguesa con carne doble, triple queso cheddar, bacon, salsa cheddar, kétchup y cebollita",
+    "image": "https://www.mostazaweb.com.ar/wp-content/uploads/2025/05/00-9.png"
+  },
+  {
+    "name": "Mega Cuarto XL",
+    "price": 9400,
+    "description": "Mega hamburguesa de carne, doble queso cheddar, cebollita, mostaza y kétchup",
+    "image": "https://www.mostazaweb.com.ar/wp-content/uploads/2025/05/00-10.png"
+  },
+  {
+    "name": "Mega Cuarto XL Doble",
+    "price": 11800,
+    "description": "Mega hamburguesa con doble carne, doble queso cheddar, cebollita, mostaza y kétchup",
+    "image": "https://www.mostazaweb.com.ar/wp-content/uploads/2025/05/HAMBURGUESAS_0-3-1.png"
+  },
+  {
+    "name": "Cheese Bacon",
+    "price": 8700,
+    "description": "Mega hamburguesa de carne, queso cheddar, bacon, cebollita, mostaza y kétchup",
+    "image": "https://www.mostazaweb.com.ar/wp-content/uploads/2025/05/00-6.png"
+  },
+  {
+    "name": "Cheese Bacon Doble",
+    "price": 11100,
+    "description": "Mega hamburguesa con doble carne, doble queso cheddar, bacon, cebollita, mostaza y kétchup",
+    "image": "https://www.mostazaweb.com.ar/wp-content/uploads/2025/05/00-7.png"
+  },
+  {
+    "name": "Mega Tasty",
+    "price": 9400,
+    "description": "Mega hamburguesa de carne, nueva salsa tasty, queso cheddar, lechuga, tomate, pepino y cebollita",
+    "image": "https://www.mostazaweb.com.ar/wp-content/uploads/2025/05/00-8.png"
+  },
+  {
+    "name": "Mega Tasty Doble",
+    "price": 11800,
+    "description": "Mega hamburguesa de doble carne, nueva salsa tasty, queso cheddar, lechuga, tomate, pepino y cebollita",
+    "image": "https://www.mostazaweb.com.ar/wp-content/uploads/2025/05/00-4.png"
+  },
+  {
+    "name": "Mega Tasty Bacon",
+    "price": 10200,
+    "description": "Mega hamburguesa de carne, nueva salsa tasty, queso cheddar, panceta, lechuga, tomate, pepino y cebollita",
+    "image": "https://www.mostazaweb.com.ar/wp-content/uploads/2025/05/00-5.png"
+  },
+  {
+    "name": "Mega Tasty Bacon Doble",
+    "price": 12600,
+    "description": "Mega hamburguesa de doble carne, nueva salsa tasty, queso cheddar, panceta, lechuga, tomate, pepino y cebollita",
+    "image": "https://via.placeholder.com/200x200.png?text=Tasty+Bacon+Doble"
+  },
+  {
+    "name": "The Biggest Simple",
+    "price": 9900,
+    "description": "Mega hamburguesa de carne, nueva salsa star a base de pepino, queso cheddar, pepino, lechuga y cebollita",
+    "image": "https://via.placeholder.com/200x200.png?text=The+Biggest"
+  },
+  {
+    "name": "The Biggest Doble",
+    "price": 12300,
+    "description": "Mega hamburguesa de doble carne, nueva salsa star a base de pepino, queso cheddar, pepino, lechuga y cebollita",
+    "image": "https://via.placeholder.com/200x200.png?text=The+Biggest+Doble"
+  },
+  {
+    "name": "Oklahoma Simple",
+    "price": 9400,
+    "description": "Mega hamburguesa de carne, nueva salsa star a base de pepino, queso cheddar, cebolla grillada y pepino",
+    "image": "https://via.placeholder.com/200x200.png?text=Oklahoma"
+  },
+  {
+    "name": "Oklahoma Doble",
+    "price": 11800,
+    "description": "Mega hamburguesa de doble carne, nueva salsa star a base de pepino, queso cheddar, cebolla grillada y pepino",
+    "image": "https://via.placeholder.com/200x200.png?text=Oklahoma+Doble"
+  },
+  {
+    "name": "Bacon Star Doble",
+    "price": 12300,
+    "description": "Mega hamburguesa de doble carne, nueva salsa star a base de pepino, queso cheddar, panceta, pepino y cebolla grillada",
+    "image": "https://via.placeholder.com/200x200.png?text=Bacon+Star"
+  },
+  {
+    "name": "Épica Huevo",
+    "price": 10200,
+    "description": "Mega hamburguesa de carne, queso cheddar, panceta, huevo, cebolla grillada y ketchup",
+    "image": "https://via.placeholder.com/200x200.png?text=Epica+Huevo"
+  },
+  {
+    "name": "Palta & Huevo",
+    "price": 10600,
+    "description": "Mega hamburguesa de carne, queso cheddar, huevo, palta, cebollita y mayonesa",
+    "image": "https://via.placeholder.com/200x200.png?text=Palta+Huevo"
+  },
+  {
+    "name": "Pollo XL",
+    "price": 8200,
+    "description": "Hamburguesa de medallón de pollo crispy, lechuga, tomate, cebollita, mayonesa, kétchup y mostaza",
+    "image": "https://via.placeholder.com/200x200.png?text=Pollo+XL"
+  },
+  {
+    "name": "Pollo XL Star",
+    "price": 9000,
+    "description": "Hamburguesa de medallón de pollo crispy, nueva salsa star a base de pepino, queso cheddar, lechuga, pepino y cebollita",
+    "image": "https://via.placeholder.com/200x200.png?text=Pollo+Star"
+  },
+  {
+    "name": "Pollo Tasty",
+    "price": 9000,
+    "description": "Hamburguesa de medallón de pollo crispy, nueva salsa tasty, queso cheddar, lechuga, tomate y cebollita",
+    "image": "https://via.placeholder.com/200x200.png?text=Pollo+Tasty"
+  },
+  {
+    "name": "Nuggets x10",
+    "price": 6600,
+    "description": "10 bocaditos de pechuga de pollo crujientes",
+    "image": "https://via.placeholder.com/200x200.png?text=Nuggets"
+  },
+  {
+    "name": "Papas Regulares",
+    "price": 2800,
+    "description": "Papas fritas bastón crujientes regulares",
+    "image": "https://via.placeholder.com/200x200.png?text=Papas"
+  },
+  {
+    "name": "Papas Grandes",
+    "price": 3500,
+    "description": "Papas fritas bastón crujientes grandes",
+    "image": "https://via.placeholder.com/200x200.png?text=Papas+Grandes"
+  },
+  {
+    "name": "Coca-Cola Sabor Original 500ml",
+    "price": 2200,
+    "description": "Coca-Cola sabor original 500ml",
+    "image": "https://via.placeholder.com/200x200.png?text=Coca+Cola"
+  },
+  {
+    "name": "Coca-Cola Sin Azúcar 500ml",
+    "price": 2200,
+    "description": "Coca-Cola sin azúcar 500ml",
+    "image": "https://via.placeholder.com/200x200.png?text=Coca+Zero"
+  },
+  {
+    "name": "Sprite Sin Azúcar 500ml",
+    "price": 2200,
+    "description": "Sprite sin azúcar 500ml",
+    "image": "https://via.placeholder.com/200x200.png?text=Sprite"
+  },
+  {
+    "name": "Agua Smart Water Sin Gas 591ml",
+    "price": 2000,
+    "description": "Agua Smart Water sin gas 591ml",
+    "image": "https://via.placeholder.com/200x200.png?text=Agua"
+  },
+  {
+    "name": "Stella Artois 473ml",
+    "price": 3500,
+    "description": "Cerveza Stella Artois 473ml",
+    "image": "https://via.placeholder.com/200x200.png?text=Stella"
+  },
+  {
+    "name": "Espresso",
+    "price": 2000,
+    "description": "Café 100% espresso",
+    "image": "https://via.placeholder.com/200x200.png?text=Espresso"
+  },
+  {
+    "name": "Lágrima",
+    "price": 2300,
+    "description": "Café combinado de 10% café espresso y 90% leche",
+    "image": "https://via.placeholder.com/200x200.png?text=Lagrima"
+  },
+  {
+    "name": "Cappuccino",
+    "price": 2800,
+    "description": "Café combinado de 40% café espresso y 60% leche, con un toque de canela y chocolate",
+    "image": "https://via.placeholder.com/200x200.png?text=Cappuccino"
+  },
+  {
+    "name": "Espresso Macchiato",
+    "price": 2500,
+    "description": "Café combinado de 90% café espresso y 10% leche",
+    "image": "https://via.placeholder.com/200x200.png?text=Macchiato"
+  },
+  {
+    "name": "Chocolate",
+    "price": 2800,
+    "description": "Bebida caliente combinada de 70% leche y 30% chocolate",
+    "image": "https://via.placeholder.com/200x200.png?text=Chocolate"
+  },
+  {
+    "name": "2 Medialunas + Café",
+    "price": 3500,
+    "description": "2 medialunas de manteca, acompañadas de café a elección o jugo de naranja",
+    "image": "https://via.placeholder.com/200x200.png?text=Medialunas"
+  },
+  {
+    "name": "3 Medialunas + Café",
+    "price": 4200,
+    "description": "3 medialunas de manteca, acompañadas de café a elección o jugo de naranja",
+    "image": "https://via.placeholder.com/200x200.png?text=Medialunas"
+  },
+  {
+    "name": "Muffin + Café",
+    "price": 3800,
+    "description": "Muffin de vainilla, acompañado de un café a elección o jugo de naranja",
+    "image": "https://via.placeholder.com/200x200.png?text=Muffin"
+  },
+  {
+    "name": "Alfajor + Café",
+    "price": 3500,
+    "description": "Alfajor de chocolate acompañado de un café a elección o jugo de naranja",
+    "image": "https://via.placeholder.com/200x200.png?text=Alfajor"
+  },
+  {
+    "name": "Tostado Chico Queso & Jamón + Café",
+    "price": 4500,
+    "description": "Tostado de queso tybo y jamón con mayonesa, acompañado de un café a elección o jugo de naranja",
+    "image": "https://via.placeholder.com/200x200.png?text=Tostado"
+  },
+  {
+    "name": "Tostado Chico Lomito & Cheddar + Café",
+    "price": 4800,
+    "description": "Tostado de queso cheddar y lomito con mayonesa, acompañado de un café a elección o jugo de naranja",
+    "image": "https://via.placeholder.com/200x200.png?text=Tostado"
+  }
+]

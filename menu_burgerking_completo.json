@@ -1,0 +1,164 @@
+[
+  {
+    "name": "Whopper",
+    "price": 9400,
+    "description": "Carne a la parrilla, pan, tomate, lechuga, cebolla, pepinos, ketchup y mayonesa",
+    "image": "https://via.placeholder.com/200x200.png?text=Whopper"
+  },
+  {
+    "name": "Whopper con Queso",
+    "price": 10200,
+    "description": "Carne a la parrilla, queso cheddar, pan, mayonesa, ketchup, cebolla, tomate, pepinos y lechuga",
+    "image": "https://via.placeholder.com/200x200.png?text=Whopper+Queso"
+  },
+  {
+    "name": "Whopper Doble",
+    "price": 12600,
+    "description": "Doble carne a la parrilla, pan, tomate, lechuga, cebolla, pepinos, ketchup y mayonesa",
+    "image": "https://via.placeholder.com/200x200.png?text=Whopper+Doble"
+  },
+  {
+    "name": "Whopper Vegetal",
+    "price": 9000,
+    "description": "Medallón a base de plantas a la parrilla, pan, mayonesa, ketchup, cebolla, tomate, pepinos y lechuga",
+    "image": "https://via.placeholder.com/200x200.png?text=Whopper+Vegetal"
+  },
+  {
+    "name": "Hamburguesa con Queso",
+    "price": 5400,
+    "description": "Carne a la parrilla, pan, queso cheddar, mostaza y ketchup",
+    "image": "https://via.placeholder.com/200x200.png?text=Hamburguesa"
+  },
+  {
+    "name": "Stacker Doble",
+    "price": 11100,
+    "description": "Doble carne a la parrilla, salsa stacker, pan, queso cheddar, panceta",
+    "image": "https://via.placeholder.com/200x200.png?text=Stacker+Doble"
+  },
+  {
+    "name": "Stacker Triple",
+    "price": 13800,
+    "description": "Tres carnes a la parrilla, salsa stacker, pan, queso cheddar, panceta",
+    "image": "https://via.placeholder.com/200x200.png?text=Stacker+Triple"
+  },
+  {
+    "name": "Extra Burger Doble",
+    "price": 10600,
+    "description": "Doble carne a la parrilla, pan, ketchup, mostaza, panceta y queso cheddar",
+    "image": "https://via.placeholder.com/200x200.png?text=Extra+Burger"
+  },
+  {
+    "name": "Long Clásico",
+    "price": 8700,
+    "description": "Doble carne a la parrilla, pan de especiales, salsa cheddar, mayonesa, lechuga y tomate",
+    "image": "https://via.placeholder.com/200x200.png?text=Long+Clasico"
+  },
+  {
+    "name": "Long Clásico Pollo",
+    "price": 8700,
+    "description": "Doble pollo jr, pan de especiales, salsa cheddar, mayonesa, lechuga y tomate",
+    "image": "https://via.placeholder.com/200x200.png?text=Long+Pollo"
+  },
+  {
+    "name": "King Vegetal",
+    "price": 7800,
+    "description": "Medallón crispy a base de plantas, lechuga, mayonesa y pan",
+    "image": "https://via.placeholder.com/200x200.png?text=King+Vegetal"
+  },
+  {
+    "name": "Napolitano",
+    "price": 9900,
+    "description": "Carne a la parrilla, queso, jamón, tomate, mayonesa y pan",
+    "image": "https://via.placeholder.com/200x200.png?text=Napolitano"
+  },
+  {
+    "name": "King Nuggets x10",
+    "price": 7000,
+    "description": "Diez unidades de pollo rebozados en pan",
+    "image": "https://via.placeholder.com/200x200.png?text=Nuggets"
+  },
+  {
+    "name": "Balde Nuggets x30",
+    "price": 17400,
+    "description": "30 nuggets rebozados",
+    "image": "https://via.placeholder.com/200x200.png?text=Balde+Nuggets"
+  },
+  {
+    "name": "Nuggets Vegetales x10",
+    "price": 6200,
+    "description": "10 nuggets a base de plantas rebozados",
+    "image": "https://via.placeholder.com/200x200.png?text=Nuggets+Vegetal"
+  },
+  {
+    "name": "Papas Regulares",
+    "price": 2800,
+    "description": "Papas fritas regulares",
+    "image": "https://via.placeholder.com/200x200.png?text=Papas"
+  },
+  {
+    "name": "Papas Grandes",
+    "price": 3500,
+    "description": "Papas fritas grandes",
+    "image": "https://via.placeholder.com/200x200.png?text=Papas+Grandes"
+  },
+  {
+    "name": "Papas Cheddar",
+    "price": 4200,
+    "description": "Papas con queso cheddar fundido",
+    "image": "https://via.placeholder.com/200x200.png?text=Papas+Cheddar"
+  },
+  {
+    "name": "Aros de Cebolla King",
+    "price": 3800,
+    "description": "Aros de cebolla crujientes",
+    "image": "https://via.placeholder.com/200x200.png?text=Aros"
+  },
+  {
+    "name": "Coca-Cola 500ml",
+    "price": 2200,
+    "description": "Coca-Cola sabor original 500ml",
+    "image": "https://via.placeholder.com/200x200.png?text=Coca+Cola"
+  },
+  {
+    "name": "Coca-Cola Zero 500ml",
+    "price": 2200,
+    "description": "Coca-Cola sin azúcar 500ml",
+    "image": "https://via.placeholder.com/200x200.png?text=Coca+Zero"
+  },
+  {
+    "name": "Sprite 500ml",
+    "price": 2200,
+    "description": "Sprite 500ml",
+    "image": "https://via.placeholder.com/200x200.png?text=Sprite"
+  },
+  {
+    "name": "Agua Mineral 500ml",
+    "price": 2000,
+    "description": "Agua mineral sin gas 500ml",
+    "image": "https://via.placeholder.com/200x200.png?text=Agua"
+  },
+  {
+    "name": "Café + 3 Medialunas",
+    "price": 3800,
+    "description": "Café acompañado con tres medialunas",
+    "image": "https://via.placeholder.com/200x200.png?text=Medialunas"
+  },
+  {
+    "name": "Café + Tostado J&Q",
+    "price": 4200,
+    "description": "Café acompañado con tostado de jamón y queso",
+    "image": "https://via.placeholder.com/200x200.png?text=Tostado"
+  },
+  {
+    "name": "Café + Croissant Jamón y Queso",
+    "price": 4500,
+    "description": "Croissant de jamón y queso cheddar acompañado con café",
+    "image": "https://via.placeholder.com/200x200.png?text=Croissant"
+  },
+  {
+    "name": "3 Tostados de Jamón y Queso",
+    "price": 5500,
+    "description": "3 tostados de jamón y queso",
+    "image": "https://via.placeholder.com/200x200.png?text=Tostados"
+  }
+]

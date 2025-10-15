@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - BurgerPoint</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ee761b;
+            margin-bottom: 5px;
+        }
+        .stat-card .label {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .solicitudes-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .solicitud-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        .solicitud-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #ee761b;
+        }
+        .solicitud-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .solicitud-header h3 {
+            color: #2c3e50;
+            font-size: 20px;
+        }
+        .badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge.pendiente {
+            background: #f39c12;
+            color: white;
+        }
+        .badge.aprobada {
+            background: #2ecc71;
+            color: white;
+        }
+        .badge.rechazada {
+            background: #e74c3c;
+            color: white;
+        }
+        .solicitud-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .info-item .icon {
+            font-size: 18px;
+            margin-top: 2px;
+        }
+        .info-item .content {
+            flex: 1;
+        }
+        .info-item .label {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-bottom: 3px;
+        }
+        .info-item .value {
+            font-size: 14px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        .menu-preview {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .menu-preview h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .menu-item .name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .menu-item .price {
+            color: #ee761b;
+            font-weight: 600;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-aprobar {
+            background: #2ecc71;
+            color: white;
+            flex: 1;
+        }
+        .btn-aprobar:hover {
+            background: #27ae60;
+        }
+        .btn-rechazar {
+            background: #e74c3c;
+            color: white;
+            flex: 1;
+        }
+        .btn-rechazar:hover {
+            background: #c0392b;
+        }
+        .btn-ver {
+            background: #3498db;
+            color: white;
+        }
+        .btn-ver:hover {
+            background: #2980b9;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+        .empty-state .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .filter-tab {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .filter-tab.active {
+            background: #ee761b;
+            color: white;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ee761b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="burger.html" class="back-link">← Volver al mapa</a>
+        
+        <div class="header">
+            <h1>🔐 Panel de Administración</h1>
+            <p>Gestiona las solicitudes de nuevos locales</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="number" id="totalSolicitudes">0</div>
+                <div class="label">Total Solicitudes</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="pendientes">0</div>
+                <div class="label">Pendientes</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="aprobadas">0</div>
+                <div class="label">Aprobadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="rechazadas">0</div>
+                <div class="label">Rechazadas</div>
+            </div>
+        </div>
+
+        <div class="solicitudes-container">
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="filtrarSolicitudes('todas')">Todas</button>
+                <button class="filter-tab" onclick="filtrarSolicitudes('pendiente')">Pendientes</button>
+                <button class="filter-tab" onclick="filtrarSolicitudes('aprobada')">Aprobadas</button>
+                <button class="filter-tab" onclick="filtrarSolicitudes('rechazada')">Rechazadas</button>
+            </div>
+
+            <div id="solicitudesLista"></div>
+        </div>
+    </div>
+
+    <script>
+        let solicitudes = [];
+        let filtroActual = 'todas';
+
+        function cargarSolicitudes() {
+            solicitudes = JSON.parse(localStorage.getItem('solicitudesPendientes') || '[]');
+            actualizarEstadisticas();
+            mostrarSolicitudes();
+        }
+
+        function actualizarEstadisticas() {
+            document.getElementById('totalSolicitudes').textContent = solicitudes.length;
+            document.getElementById('pendientes').textContent = solicitudes.filter(s => s.estado === 'pendiente').length;
+            document.getElementById('aprobadas').textContent = solicitudes.filter(s => s.estado === 'aprobada').length;
+            document.getElementById('rechazadas').textContent = solicitudes.filter(s => s.estado === 'rechazada').length;
+        }
+
+        function mostrarSolicitudes() {
+            const lista = document.getElementById('solicitudesLista');
+            const solicitudesFiltradas = filtroActual === 'todas' 
+                ? solicitudes 
+                : solicitudes.filter(s => s.estado === filtroActual);
+
+            if (solicitudesFiltradas.length === 0) {
+                lista.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">📭</div>
+                        <h3>No hay solicitudes ${filtroActual === 'todas' ? '' : filtroActual + 's'}</h3>
+                        <p>Las nuevas solicitudes aparecerán aquí</p>
+                    </div>
+                `;
+                return;
+            }
+
+            lista.innerHTML = solicitudesFiltradas.map((solicitud, index) => `
+                <div class="solicitud-card">
+                    <div class="solicitud-header">
+                        <h3>${solicitud.local.nombre}</h3>
+                        <span class="badge ${solicitud.estado}">${solicitud.estado.toUpperCase()}</span>
+                    </div>
+
+                    <div class="solicitud-info">
+                        <div class="info-item">
+                            <div class="icon">🏢</div>
+                            <div class="content">
+                                <div class="label">Cadena</div>
+                                <div class="value">${solicitud.local.cadena}</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon">📍</div>
+                            <div class="content">
+                                <div class="label">Dirección</div>
+                                <div class="value">${solicitud.local.direccion}</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon">👤</div>
+                            <div class="content">
+                                <div class="label">Contacto</div>
+                                <div class="value">${solicitud.contacto.nombre}</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon">📧</div>
+                            <div class="content">
+                                <div class="label">Email</div>
+                                <div class="value">${solicitud.contacto.email}</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon">📱</div>
+                            <div class="content">
+                                <div class="label">Teléfono</div>
+                                <div class="value">${solicitud.contacto.telefono}</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon">📅</div>
+                            <div class="content">
+                                <div class="label">Fecha</div>
+                                <div class="value">${new Date(solicitud.timestamp).toLocaleDateString('es-AR')}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    ${solicitud.links.rappi || solicitud.links.pedidosYa ? `
+                        <div class="solicitud-info">
+                            ${solicitud.links.rappi ? `
+                                <div class="info-item">
+                                    <div class="icon">🛵</div>
+                                    <div class="content">
+                                        <div class="label">Rappi</div>
+                                        <div class="value"><a href="${solicitud.links.rappi}" target="_blank">Ver link</a></div>
+                                    </div>
+                                </div>
+                            ` : ''}
+                            ${solicitud.links.pedidosYa ? `
+                                <div class="info-item">
+                                    <div class="icon">🍔</div>
+                                    <div class="content">
+                                        <div class="label">PedidosYa</div>
+                                        <div class="value"><a href="${solicitud.links.pedidosYa}" target="_blank">Ver link</a></div>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    ` : ''}
+
+                    <div class="menu-preview">
+                        <h4>🍴 Menú (${solicitud.menu.length} productos)</h4>
+                        ${solicitud.menu.slice(0, 5).map(item => `
+                            <div class="menu-item">
+                                <span class="name">${item.name}</span>
+                                <span class="price">$${item.price.toLocaleString('es-AR')}</span>
+                            </div>
+                        `).join('')}
+                        ${solicitud.menu.length > 5 ? `<p style="margin-top: 10px; color: #7f8c8d; font-size: 12px;">Y ${solicitud.menu.length - 5} productos más...</p>` : ''}
+                    </div>
+
+                    ${solicitud.comentarios ? `
+                        <div style="background: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                            <strong>💬 Comentarios:</strong> ${solicitud.comentarios}
+                        </div>
+                    ` : ''}
+
+                    <div class="actions">
+                        ${solicitud.estado === 'pendiente' ? `
+                            <button class="btn btn-aprobar" onclick="aprobarSolicitud(${index})">✅ Aprobar</button>
+                            <button class="btn btn-rechazar" onclick="rechazarSolicitud(${index})">❌ Rechazar</button>
+                        ` : `
+                            <button class="btn btn-ver" onclick="verDetalles(${index})">👁️ Ver Detalles</button>
+                        `}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function aprobarSolicitud(index) {
+            if (!confirm('¿Aprobar esta solicitud y agregar el local al mapa?')) return;
+
+            solicitudes[index].estado = 'aprobada';
+            
+            // Agregar al archivo de locales
+            const locales = JSON.parse(localStorage.getItem('localesAprobados') || '[]');
+            const nuevoLocal = {
+                id: locales.length + 1,
+                name: solicitudes[index].local.nombre,
+                address: solicitudes[index].local.direccion,
+                coords: solicitudes[index].local.coords,
+                chain: solicitudes[index].local.cadena,
+                googleMapsLink: `https://www.google.com/maps/place/${solicitudes[index].local.coords[0]},${solicitudes[index].local.coords[1]}`,
+                rappiLink: solicitudes[index].links.rappi || '#',
+                pedidosYaLink: solicitudes[index].links.pedidosYa || '#',
+                menu: solicitudes[index].menu
+            };
+            locales.push(nuevoLocal);
+            localStorage.setItem('localesAprobados', JSON.stringify(locales));
+            
+            localStorage.setItem('solicitudesPendientes', JSON.stringify(solicitudes));
+            
+            alert('✅ Local aprobado y agregado al mapa!\n\nNOTA: Para que aparezca en el mapa, debes agregar este local al archivo locales.json');
+            cargarSolicitudes();
+        }
+
+        function rechazarSolicitud(index) {
+            const motivo = prompt('¿Por qué rechazas esta solicitud? (opcional)');
+            if (motivo === null) return;
+
+            solicitudes[index].estado = 'rechazada';
+            solicitudes[index].motivoRechazo = motivo;
+            localStorage.setItem('solicitudesPendientes', JSON.stringify(solicitudes));
+            
+            alert('❌ Solicitud rechazada');
+            cargarSolicitudes();
+        }
+
+        function verDetalles(index) {
+            const solicitud = solicitudes[index];
+            alert(`Detalles de la solicitud:\n\nLocal: ${solicitud.local.nombre}\nEstado: ${solicitud.estado}\nFecha: ${new Date(solicitud.timestamp).toLocaleString('es-AR')}`);
+        }
+
+        function filtrarSolicitudes(filtro) {
+            filtroActual = filtro;
+            document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            mostrarSolicitudes();
+        }
+
+        // Cargar al inicio
+        cargarSolicitudes();
+
+        // Actualizar cada 5 segundos
+        setInterval(cargarSolicitudes, 5000);
+    </script>
+</body>
+</html>
