@@ -1,0 +1,69 @@
+═══════════════════════════════════════════════════════════════
+    📤 GUÍA PARA SUBIR BURGERPOINT A GITHUB
+═══════════════════════════════════════════════════════════════
+
+✅ PASO 1: CREAR REPOSITORIO EN GITHUB
+────────────────────────────────────────────────────────────────
+1. Ve a: https://github.com/new
+2. Nombre del repositorio: burgerpoint
+3. Descripción: Mapa interactivo de hamburgueserías - Proyecto escolar
+4. Selecciona: ✓ Public
+5. NO marques "Add a README file"
+6. Click en "Create repository"
+
+
+✅ PASO 2: CONFIGURAR GIT (Solo primera vez)
+────────────────────────────────────────────────────────────────
+Abre PowerShell en esta carpeta y ejecuta:
+
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"
+
+
+✅ PASO 3: SUBIR EL PROYECTO
+────────────────────────────────────────────────────────────────
+Copia y pega estos comandos UNO POR UNO en PowerShell:
+
+# Conectar con tu repositorio (REEMPLAZA "TU-USUARIO" con tu usuario de GitHub)
+git remote add origin https://github.com/TU-USUARIO/burgerpoint.git
+
+# Subir archivos
+git push -u origin main
+
+
+✅ PASO 4: ACTIVAR GITHUB PAGES
+────────────────────────────────────────────────────────────────
+1. Ve a tu repositorio en GitHub
+2. Click en "Settings" (arriba)
+3. Click en "Pages" (menú izquierdo)
+4. En "Source" selecciona: "main" branch
+5. Click en "Save"
+6. Espera 2-3 minutos
+
+
+✅ TU SITIO ESTARÁ EN:
+────────────────────────────────────────────────────────────────
+https://TU-USUARIO.github.io/burgerpoint/burger.html
+
+(Reemplaza TU-USUARIO con tu nombre de usuario de GitHub)
+
+
+═══════════════════════════════════════════════════════════════
+    🎉 ¡LISTO! TU PROYECTO ESTARÁ ONLINE
+═══════════════════════════════════════════════════════════════
+
+📝 NOTAS IMPORTANTES:
+• El proyecto ya está preparado para GitHub Pages
+• Los botones de Admin están desactivados (no funcionan online)
+• Todos los menús y precios están incluidos
+• El mapa funcionará perfectamente
+
+
+🔧 SI TIENES PROBLEMAS:
+• Asegúrate de estar en la carpeta correcta
+• Verifica que hayas creado el repositorio en GitHub
+• Reemplaza "TU-USUARIO" con tu usuario real de GitHub
+
+
+📧 CONTACTO:
+Proyecto escolar - Técnica 5 "Galileo Galilei"

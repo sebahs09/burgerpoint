@@ -120,23 +120,32 @@ Para agregar o modificar hamburgueserías, edita el archivo `locales.json`:
 5. **Guardar y esperar 2-3 minutos**
 6. **Tu sitio estará en:** `https://tu-usuario.github.io/nombre-repo/burger.html`
 
-### ⚠️ Sistema de Registro (Desactivado para GitHub Pages)
+### 🏪 Sistema de Registro de Locales (ACTIVADO)
 
-Los archivos `registro-local.html` y `admin-panel.html` están incluidos pero **NO funcionan en GitHub Pages** porque:
+El sistema de registro está **ACTIVADO** y funciona localmente:
 
-- ❌ Usan localStorage (solo guarda en el navegador local)
-- ❌ No hay sincronización entre usuarios
-- ❌ Requieren un backend (Node.js, Firebase, etc.)
+**Características:**
+- ✅ Formulario para que locales se registren
+- ✅ Panel de administración para aprobar/rechazar
+- ✅ Generación automática de código JSON
+- ✅ Copiar al portapapeles con un click
+
+**Cómo funciona:**
+1. Los locales llenan el formulario en `registro-local.html`
+2. La solicitud se guarda en localStorage del navegador
+3. Tú revisas las solicitudes en `admin-panel.html`
+4. Al aprobar, se genera el código JSON automáticamente
+5. Copias el código y lo pegas en `locales.json`
+6. El nuevo local aparece en el mapa
+
+**⚠️ Limitación en GitHub Pages:**
+- Solo funciona localmente (cada navegador guarda sus propios datos)
+- Para producción real necesitas backend (Firebase, Node.js, etc.)
 
 **Para desarrollo local:**
-- Descomenta las líneas 314-324 en `burger.html`
-- Usa el sistema localmente para pruebas
-
-**Para producción real:**
-- Necesitas implementar un backend
-- Usar base de datos (MongoDB, PostgreSQL, Firebase)
-- Sistema de autenticación
-- Envío de emails
+- Abre `burger.html` localmente
+- Verás los botones "Registra tu Local" y "Admin"
+- Usa el sistema para agregar nuevos locales
 
 ---
 
