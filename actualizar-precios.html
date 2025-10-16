@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Precios - BurgerPoint</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 30px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 30px;
+        }
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .step h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        .menu-items {
+            margin-top: 20px;
+        }
+        .menu-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 2px solid #e0e0e0;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+            align-items: center;
+        }
+        .menu-item .name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .menu-item input {
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .result {
+            display: none;
+            background: #d4edda;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .result.show {
+            display: block;
+        }
+        .result h2 {
+            color: #155724;
+            margin-bottom: 15px;
+        }
+        .result textarea {
+            width: 100%;
+            height: 300px;
+            font-family: monospace;
+            padding: 15px;
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        .btn-copy {
+            background: #28a745;
+        }
+        .btn-copy:hover {
+            background: #218838;
+        }
+        .instructions {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #856404;
+        }
+        .instructions strong {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .instructions ol {
+            margin-left: 20px;
+        }
+        .instructions li {
+            margin-bottom: 5px;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 Actualizar Precios</h1>
+            <p>Mantén tu menú actualizado con los precios correctos</p>
+        </div>
+
+        <a href="burger.html" class="back-link">← Volver al mapa</a>
+
+        <div class="content">
+            <div class="step">
+                <h3>Paso 1: Selecciona tu local</h3>
+                <div class="form-group">
+                    <label for="localSelect">Busca y selecciona tu local:</label>
+                    <select id="localSelect" onchange="cargarMenu()">
+                        <option value="">-- Selecciona tu local --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="menuSection" style="display: none;">
+                <div class="step">
+                    <h3>Paso 2: Actualiza los precios</h3>
+                    <p style="margin-bottom: 15px; color: #7f8c8d; font-size: 14px;">
+                        Modifica solo los precios que necesites actualizar. Los demás quedarán igual.
+                    </p>
+                    <div id="menuItems" class="menu-items"></div>
+                </div>
+
+                <button class="btn" onclick="generarCodigo()">✅ Generar Código Actualizado</button>
+            </div>
+
+            <div id="result" class="result">
+                <h2>✅ ¡Código Generado!</h2>
+                <p style="margin-bottom: 15px;">Copia el código de abajo y envíalo al administrador:</p>
+                <textarea id="jsonOutput" readonly></textarea>
+                <button class="btn btn-copy" onclick="copiarCodigo()">📋 Copiar Código</button>
+                
+                <div class="instructions">
+                    <strong>📝 Instrucciones para el administrador:</strong>
+                    <ol>
+                        <li>Abrir el archivo <code>locales.json</code></li>
+                        <li>Buscar el local por ID (está al inicio del código)</li>
+                        <li>Reemplazar todo el objeto del local con este código</li>
+                        <li>Guardar el archivo</li>
+                        <li>Subir a GitHub con: <code>git add locales.json && git commit -m "Actualizar precios" && git push</code></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let locales = [];
+        let localSeleccionado = null;
+
+        // Cargar locales
+        fetch('locales.json')
+            .then(res => res.json())
+            .then(data => {
+                locales = data;
+                const select = document.getElementById('localSelect');
+                
+                // Ordenar por cadena y nombre
+                locales.sort((a, b) => {
+                    if (a.chain !== b.chain) return a.chain.localeCompare(b.chain);
+                    return a.name.localeCompare(b.name);
+                });
+
+                locales.forEach(local => {
+                    const option = document.createElement('option');
+                    option.value = local.id;
+                    option.textContent = `${local.chain} - ${local.name} (${local.address})`;
+                    select.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error al cargar locales:', error);
+                alert('Error al cargar los locales. Intenta recargar la página.');
+            });
+
+        // Cargar menú del local seleccionado
+        function cargarMenu() {
+            const selectValue = document.getElementById('localSelect').value;
+            if (!selectValue) {
+                document.getElementById('menuSection').style.display = 'none';
+                return;
+            }
+
+            localSeleccionado = locales.find(l => l.id == selectValue);
+            if (!localSeleccionado) return;
+
+            const menuItemsDiv = document.getElementById('menuItems');
+            menuItemsDiv.innerHTML = '';
+
+            if (!localSeleccionado.menu || localSeleccionado.menu.length === 0) {
+                menuItemsDiv.innerHTML = '<p style="color: #7f8c8d;">Este local no tiene menú registrado.</p>';
+                document.getElementById('menuSection').style.display = 'block';
+                return;
+            }
+
+            localSeleccionado.menu.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'menu-item';
+                div.innerHTML = `
+                    <div class="name">${item.name}</div>
+                    <input type="number" 
+                           id="price_${index}" 
+                           value="${item.price}" 
+                           placeholder="Precio"
+                           min="0"
+                           step="100">
+                `;
+                menuItemsDiv.appendChild(div);
+            });
+
+            document.getElementById('menuSection').style.display = 'block';
+            document.getElementById('result').classList.remove('show');
+        }
+
+        // Generar código actualizado
+        function generarCodigo() {
+            if (!localSeleccionado) return;
+
+            // Actualizar precios del menú
+            const menuActualizado = localSeleccionado.menu.map((item, index) => {
+                const nuevoPrecio = parseInt(document.getElementById(`price_${index}`).value);
+                return {
+                    ...item,
+                    price: nuevoPrecio
+                };
+            });
+
+            // Crear objeto completo del local con precios actualizados
+            const localActualizado = {
+                ...localSeleccionado,
+                menu: menuActualizado
+            };
+
+            const jsonCode = JSON.stringify(localActualizado, null, 4);
+            document.getElementById('jsonOutput').value = jsonCode;
+            document.getElementById('result').classList.add('show');
+            
+            // Scroll al resultado
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Copiar código
+        function copiarCodigo() {
+            const textarea = document.getElementById('jsonOutput');
+            textarea.select();
+            document.execCommand('copy');
+            
+            event.target.textContent = '✅ ¡Copiado!';
+            event.target.style.background = '#218838';
+            
+            setTimeout(() => {
+                event.target.textContent = '📋 Copiar Código';
+                event.target.style.background = '#28a745';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
