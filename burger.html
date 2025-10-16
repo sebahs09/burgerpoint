@@ -675,8 +675,9 @@
             if (maxKm !== null && locationsInRange === 0) {
                 // No hay locales en el rango
                 const closestDistance = closestLocation ? closestLocation.distance.toFixed(1) : 'N/A';
+                const closestName = closestLocation ? closestLocation.name : 'Desconocido';
                 
-                if (confirm(`No hay hamburgueserías a menos de ${maxKm} km.\n\nEl local más cercano está a ${closestDistance} km.\n\n¿Quieres ver todos los locales?`)) {
+                if (confirm(`No hay hamburgueserías a menos de ${maxKm} km.\n\nEl local más cercano es:\n${closestName}\n(${closestDistance} km)\n\n¿Quieres ver todos los locales?`)) {
                     showAll = true;
                     maxKm = null;
                     // Activar botón "Todos"
