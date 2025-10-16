@@ -1,0 +1,131 @@
+name: "🏪 Solicitud de Alta de Local"
+description: "Completa este formulario para solicitar agregar tu local a BurgerPoint"
+title: "" 
+labels: ["solicitud-local", "pendiente"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por tu interés en aparecer en BurgerPoint. Completa los datos con la mayor precisión posible.
+        Tras revisar tu solicitud, si es aprobada, tu local aparecerá en el mapa.
+
+  - type: input
+    id: nombre
+    attributes:
+      label: Nombre del local
+      placeholder: "Ej: Burger House - San Martín"
+    validations:
+      required: true
+
+  - type: input
+    id: direccion
+    attributes:
+      label: Dirección
+      placeholder: "Calle y número, ciudad"
+    validations:
+      required: true
+
+  - type: input
+    id: lat
+    attributes:
+      label: Latitud
+      placeholder: "Ej: -34.5768158"
+    validations:
+      required: true
+
+  - type: input
+    id: lng
+    attributes:
+      label: Longitud
+      placeholder: "Ej: -58.5365322"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: cadena
+    attributes:
+      label: Cadena
+      options:
+        - Independiente
+        - McDonald's
+        - Burger King
+        - Mostaza
+        - Otra
+    validations:
+      required: true
+
+  - type: input
+    id: rappi
+    attributes:
+      label: Link de Rappi (opcional)
+      placeholder: "https://..."
+    validations:
+      required: false
+
+  - type: input
+    id: pedidosya
+    attributes:
+      label: Link de PedidosYa (opcional)
+      placeholder: "https://..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: menu
+    attributes:
+      label: Menú (JSON)
+      description: |
+        Pega aquí tu menú en formato JSON. Ejemplo:
+        ```json
+        [
+          {"name":"Cheese Burger","price":6500,"description":"","image":"https://..."},
+          {"name":"Papas Fritas","price":3000}
+        ]
+        ```
+      value: |
+        [
+          {"name":"Cheese Burger","price":6500},
+          {"name":"Papas Fritas","price":3000}
+        ]
+    validations:
+      required: true
+
+  - type: textarea
+    id: json_total
+    attributes:
+      label: JSON completo (opcional)
+      description: |
+        Si prefieres, pega todo el objeto en un bloque JSON. Si completas los campos anteriores, este campo puede quedar vacío.
+        Formato esperado:
+        ```json
+        {
+          "local": {
+            "nombre": "...",
+            "direccion": "...",
+            "coords": [-34.57, -58.53],
+            "cadena": "Independiente"
+          },
+          "links": {"rappi": "...", "pedidosYa": "..."},
+          "menu": [ {"name":"...","price":1234} ]
+        }
+        ```
+      value: |
+        {
+          "local": {
+            "nombre": "",
+            "direccion": "",
+            "coords": [0, 0],
+            "cadena": "Independiente"
+          },
+          "links": {"rappi": "", "pedidosYa": ""},
+          "menu": []
+        }
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        Al enviar, crearemos un Issue con tus datos. Tras aprobarlo, se agregará automáticamente al mapa mediante GitHub Actions.

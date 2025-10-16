@@ -235,6 +235,26 @@
     </style>
 </head>
 <body>
+    <script>
+        (function() {
+            const PIN_HASH = '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5'; // sha256('12345')
+            const redirectAway = () => { window.location.href = 'burger.html'; };
+            const toHex = (buffer) => Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+            const entered = prompt('Ingrese PIN de administrador:');
+            if (!entered) { redirectAway(); return; }
+            try {
+                if (window.crypto && window.crypto.subtle) {
+                    window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(entered))
+                        .then(hash => { if (toHex(hash) !== PIN_HASH) { alert('Acceso denegado'); redirectAway(); } })
+                        .catch(() => { if (entered !== '12345') { alert('Acceso denegado'); redirectAway(); } });
+                } else {
+                    if (entered !== '12345') { alert('Acceso denegado'); redirectAway(); }
+                }
+            } catch (e) {
+                if (entered !== '12345') { alert('Acceso denegado'); redirectAway(); }
+            }
+        })();
+    </script>
     <div class="container">
         <a href="burger.html" class="back-link">← Volver al mapa</a>
         

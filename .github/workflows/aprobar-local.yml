@@ -1,0 +1,102 @@
+# ═══════════════════════════════════════════════════════════════
+# GITHUB ACTION: APROBAR LOCALES AUTOMÁTICAMENTE
+# Cuando cierras un issue con label "aprobada", se agrega a locales.json
+# ═══════════════════════════════════════════════════════════════
+
+name: Aprobar Local Automáticamente
+
+on:
+  issues:
+    types: [closed, labeled]
+
+jobs:
+  agregar-local:
+    if: contains(github.event.issue.labels.*.name, 'aprobada')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Ensure jq is installed
+        run: |
+          if ! command -v jq >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y jq
+          fi
+      
+      - name: Extraer datos del issue
+        id: extract
+        run: |
+          # Extraer el JSON del cuerpo del issue
+          ISSUE_BODY="${{ github.event.issue.body }}"
+          
+          # Buscar el bloque JSON
+          JSON_DATA=$(echo "$ISSUE_BODY" | sed -n '/```json/,/```/p' | sed '1d;$d')
+          
+          # Guardar en archivo temporal
+          echo "$JSON_DATA" > nuevo-local.json
+          
+          # Mostrar para debug
+          echo "JSON extraído:"
+          cat nuevo-local.json
+      
+      - name: Agregar a locales.json
+        run: |
+          # Leer locales.json actual
+          LOCALES=$(cat locales.json)
+          
+          # Leer nuevo local
+          NUEVO_LOCAL=$(cat nuevo-local.json)
+          
+          # Obtener el último ID y sumar 1
+          ULTIMO_ID=$(echo "$LOCALES" | jq -r 'max_by(.id) | .id')
+          NUEVO_ID=$((ULTIMO_ID + 1))
+          
+          # Asignar nuevo ID al local
+          NUEVO_LOCAL_CON_ID=$(echo "$NUEVO_LOCAL" | jq ".local.id = $NUEVO_ID")
+          
+          # Convertir el formato a lo que necesita locales.json
+          LOCAL_FINAL=$(echo "$NUEVO_LOCAL_CON_ID" | jq '{
+            id: .local.id,
+            name: .local.nombre,
+            address: .local.direccion,
+            coords: .local.coords,
+            chain: .local.cadena,
+            googleMapsLink: "https://www.google.com/maps/place/\(.local.coords[0]),\(.local.coords[1])",
+            rappiLink: (.links.rappi // "#"),
+            pedidosYaLink: (.links.pedidosYa // "#"),
+            menu: .menu
+          }')
+          
+          # Agregar al array de locales
+          LOCALES_ACTUALIZADOS=$(echo "$LOCALES" | jq ". += [$LOCAL_FINAL]")
+          
+          # Guardar
+          echo "$LOCALES_ACTUALIZADOS" | jq '.' > locales.json
+          
+          echo "✅ Local agregado exitosamente"
+      
+      - name: Commit y Push
+        run: |
+          git config user.name "BurgerPoint Bot"
+          git config user.email "bot@burgerpoint.com"
+          git add locales.json
+          git commit -m "🏪 Agregar nuevo local desde issue #${{ github.event.issue.number }}"
+          git push
+      
+      - name: Comentar en el issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ **Local aprobado y agregado al mapa!**\n\nYa está visible en: https://sebahs09.github.io/burgerpoint/burger.html'
+            })
