@@ -402,16 +402,16 @@
         <span>Registra tu Local GRATIS</span>
     </a>
     
-    <!-- Botón flotante para panel admin -->
-    <a href="admin-panel.html" class="admin-btn">
+    <!-- Botón flotante para panel admin (oculto por defecto) -->
+    <a href="admin-panel.html" class="admin-btn" id="adminBtn" style="display: none;">
         <span>🔐</span>
         <span>Admin</span>
     </a>
     
-    <!-- Botón flotante para actualizar precios -->
-    <a href="actualizar-precios.html" class="update-prices-btn">
-        <span>💰</span>
-        <span>Actualizar Precios</span>
+    <!-- Botón flotante para gestión de locales (oculto por defecto) -->
+    <a href="admin-locales.html" class="admin-btn" id="manageBtn" style="display: none; bottom: 100px;">
+        <span>🗑️</span>
+        <span>Gestionar</span>
     </a>
     
     <footer>
@@ -576,6 +576,75 @@
             const isMarker = e.target.closest('.leaflet-marker-icon');
             if (!isInside && !isMarker && sidebar.classList.contains('open')) {
                 closeSidebar();
+            }
+        });
+
+        // Sistema de activación de modo admin (combinación secreta)
+        let adminKeySequence = [];
+        const secretCode = ['a', 'd', 'm', 'i', 'n']; // Teclas: a-d-m-i-n
+        let adminModeActive = localStorage.getItem('adminMode') === 'true';
+
+        // Mostrar botones si el modo admin está activo
+        if (adminModeActive) {
+            document.getElementById('adminBtn').style.display = 'flex';
+            document.getElementById('manageBtn').style.display = 'flex';
+        }
+
+        // Detectar combinación de teclas
+        document.addEventListener('keydown', function(e) {
+            adminKeySequence.push(e.key.toLowerCase());
+            
+            // Mantener solo los últimos 5 caracteres
+            if (adminKeySequence.length > secretCode.length) {
+                adminKeySequence.shift();
+            }
+            
+            // Verificar si coincide con el código secreto
+            if (adminKeySequence.join('') === secretCode.join('')) {
+                if (!adminModeActive) {
+                    adminModeActive = true;
+                    localStorage.setItem('adminMode', 'true');
+                    document.getElementById('adminBtn').style.display = 'flex';
+                    document.getElementById('manageBtn').style.display = 'flex';
+                    
+                    // Mostrar notificación
+                    const notification = document.createElement('div');
+                    notification.style.cssText = 'position:fixed;top:20px;right:20px;background:#2ecc71;color:white;padding:15px 25px;border-radius:10px;font-weight:600;z-index:10000;box-shadow:0 5px 15px rgba(0,0,0,0.3);';
+                    notification.textContent = '🔓 Modo Admin Activado';
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => notification.remove(), 3000);
+                }
+                adminKeySequence = [];
+            }
+        });
+
+        // Desactivar modo admin con triple click en el logo
+        let logoClickCount = 0;
+        let logoClickTimer = null;
+        
+        document.querySelector('.logo').addEventListener('click', function() {
+            logoClickCount++;
+            
+            if (logoClickTimer) clearTimeout(logoClickTimer);
+            
+            logoClickTimer = setTimeout(() => {
+                logoClickCount = 0;
+            }, 1000);
+            
+            if (logoClickCount === 3 && adminModeActive) {
+                adminModeActive = false;
+                localStorage.removeItem('adminMode');
+                document.getElementById('adminBtn').style.display = 'none';
+                document.getElementById('manageBtn').style.display = 'none';
+                
+                const notification = document.createElement('div');
+                notification.style.cssText = 'position:fixed;top:20px;right:20px;background:#e74c3c;color:white;padding:15px 25px;border-radius:10px;font-weight:600;z-index:10000;box-shadow:0 5px 15px rgba(0,0,0,0.3);';
+                notification.textContent = '🔒 Modo Admin Desactivado';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => notification.remove(), 3000);
+                logoClickCount = 0;
             }
         });
 
