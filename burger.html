@@ -656,7 +656,70 @@
             if (!userLocation) return;
             
             let visibleCount = 0;
+            let closestLocation = null;
+            let minDistance = Infinity;
             
+            // Primera pasada: contar cuántos hay en el rango
+            allLocations.forEach(location => {
+                if (location.distance < minDistance) {
+                    minDistance = location.distance;
+                    closestLocation = location;
+                }
+                
+                if (maxKm === null || location.distance <= maxKm) {
+                    visibleCount++;
+                }
+            });
+            
+            // Si no hay locales en el rango, mostrar el más cercano o todos
+            let showAll = false;
+            if (maxKm !== null && visibleCount === 0) {
+                // No hay locales en el rango
+                const closestDistance = closestLocation ? closestLocation.distance.toFixed(1) : 'N/A';
+                
+                if (confirm(`No hay hamburgueserías a menos de ${maxKm} km.\n\nEl local más cercano está a ${closestDistance} km.\n\n¿Quieres ver todos los locales?`)) {
+                    showAll = true;
+                    maxKm = null;
+                    // Activar botón "Todos"
+                    document.querySelectorAll('.distance-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.textContent === 'Todos') {
+                            btn.classList.add('active');
+                        }
+                    });
+                } else {
+                    // Mostrar solo el más cercano
+                    if (closestLocation) {
+                        allLocations.forEach(location => {
+                            const marker = location.marker;
+                            if (!marker) return;
+                            
+                            if (location.id === closestLocation.id) {
+                                if (!mapInstance.hasLayer(marker)) {
+                                    marker.addTo(mapInstance);
+                                }
+                            } else {
+                                if (mapInstance.hasLayer(marker)) {
+                                    mapInstance.removeLayer(marker);
+                                }
+                            }
+                        });
+                        
+                        document.getElementById('locationCount').textContent = `Mostrando el local más cercano (${closestDistance} km)`;
+                        mapInstance.setView([closestLocation.coords[0], closestLocation.coords[1]], 15);
+                        
+                        // Abrir automáticamente el sidebar del local más cercano
+                        setTimeout(() => {
+                            updateSidebar(closestLocation.id, allLocations);
+                            document.getElementById('sidebar').classList.add('open');
+                        }, 500);
+                        
+                        return;
+                    }
+                }
+            }
+            
+            // Mostrar/ocultar marcadores según el filtro
             allLocations.forEach(location => {
                 const marker = location.marker;
                 if (!marker) return;
