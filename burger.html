@@ -404,6 +404,13 @@
         function updateSidebar(locationId, locations) {
             const location = locations.find(loc => loc.id === locationId);
             if (!location) return;
+            
+            // Cerrar el footer si está abierto
+            const footer = document.querySelector('footer');
+            if (footer.classList.contains('expanded')) {
+                footer.classList.remove('expanded');
+                document.querySelector('.footer-toggle').classList.remove('expanded');
+            }
 
             const menuHtml = location.menu.map(item => `
                 <div class="menu-item">
@@ -448,6 +455,12 @@
 
             footer.classList.toggle('expanded');
             toggleBtn.classList.toggle('expanded');
+            
+            // Cerrar el sidebar si está abierto
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
         }
 
         document.addEventListener('click', function (e) {
