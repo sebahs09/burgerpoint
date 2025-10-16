@@ -659,21 +659,20 @@
             let closestLocation = null;
             let minDistance = Infinity;
             
-            // Primera pasada: contar cuántos hay en el rango
+            // Primera pasada: encontrar el más cercano
             allLocations.forEach(location => {
                 if (location.distance < minDistance) {
                     minDistance = location.distance;
                     closestLocation = location;
                 }
-                
-                if (maxKm === null || location.distance <= maxKm) {
-                    visibleCount++;
-                }
             });
+            
+            // Contar cuántos hay en el rango
+            const locationsInRange = allLocations.filter(loc => maxKm === null || loc.distance <= maxKm).length;
             
             // Si no hay locales en el rango, mostrar el más cercano o todos
             let showAll = false;
-            if (maxKm !== null && visibleCount === 0) {
+            if (maxKm !== null && locationsInRange === 0) {
                 // No hay locales en el rango
                 const closestDistance = closestLocation ? closestLocation.distance.toFixed(1) : 'N/A';
                 
@@ -729,7 +728,6 @@
                     if (!mapInstance.hasLayer(marker)) {
                         marker.addTo(mapInstance);
                     }
-                    visibleCount++;
                 } else {
                     // Ocultar marcador
                     if (mapInstance.hasLayer(marker)) {
@@ -738,7 +736,9 @@
                 }
             });
             
-            // Actualizar contador
+            // Actualizar contador con el valor correcto
+            visibleCount = locationsInRange;
+            
             if (maxKm === null) {
                 document.getElementById('locationCount').textContent = `${allLocations.length} hamburgueserías encontradas`;
             } else {
