@@ -422,12 +422,36 @@
                 }
             }
 
-            // Guardar en localStorage (temporal - en producción usarías un backend)
-            let solicitudes = JSON.parse(localStorage.getItem('solicitudesPendientes') || '[]');
-            solicitudes.push(data);
-            localStorage.setItem('solicitudesPendientes', JSON.stringify(solicitudes));
+            // Generar el código JSON para agregar al archivo
+            const nuevoLocal = {
+                id: 999, // El admin debe cambiar esto por el siguiente ID disponible
+                name: data.local.nombre,
+                address: data.local.direccion,
+                coords: data.local.coords,
+                chain: data.local.cadena,
+                googleMapsLink: `https://www.google.com/maps/place/${data.local.coords[0]},${data.local.coords[1]}`,
+                rappiLink: data.links.rappi || '#',
+                pedidosYaLink: data.links.pedidosYa || '#',
+                menu: data.menu
+            };
 
-            // Mostrar mensaje de éxito
+            const jsonCode = JSON.stringify(nuevoLocal, null, 4);
+
+            // Mostrar el código JSON para copiar
+            document.getElementById('successMessage').innerHTML = `
+                <h2>✅ ¡Solicitud Generada!</h2>
+                <p style="margin-bottom: 15px;">Copia el código de abajo y envíalo por WhatsApp, email o el método que prefieras al administrador:</p>
+                <textarea id="jsonOutput" style="width: 100%; height: 300px; font-family: monospace; padding: 15px; border: 2px solid #2ecc71; border-radius: 8px; font-size: 12px; margin-bottom: 15px;">${jsonCode}</textarea>
+                <button onclick="copiarCodigo()" style="width: 100%; padding: 15px; background: #2ecc71; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 16px; margin-bottom: 10px;">📋 Copiar Código</button>
+                <p style="font-size: 13px; color: #7f8c8d; margin-top: 10px;">
+                    <strong>Instrucciones para el administrador:</strong><br>
+                    1. Abrir el archivo locales.json<br>
+                    2. Pegar este código antes del último ]<br>
+                    3. Agregar una coma después del local anterior<br>
+                    4. Cambiar el ID 999 por el siguiente número disponible<br>
+                    5. Guardar y subir a GitHub
+                </p>
+            `;
             document.getElementById('successMessage').classList.add('show');
             this.reset();
             document.getElementById('menuItems').innerHTML = '';
@@ -438,12 +462,23 @@
 
             // Scroll al mensaje
             document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-
-            // Ocultar mensaje después de 5 segundos
-            setTimeout(() => {
-                document.getElementById('successMessage').classList.remove('show');
-            }, 5000);
         });
+
+        // Función para copiar el código
+        function copiarCodigo() {
+            const textarea = document.getElementById('jsonOutput');
+            textarea.select();
+            document.execCommand('copy');
+            
+            // Cambiar texto del botón temporalmente
+            event.target.textContent = '✅ ¡Copiado!';
+            event.target.style.background = '#27ae60';
+            
+            setTimeout(() => {
+                event.target.textContent = '📋 Copiar Código';
+                event.target.style.background = '#2ecc71';
+            }, 2000);
+        }
     </script>
 </body>
 </html>
